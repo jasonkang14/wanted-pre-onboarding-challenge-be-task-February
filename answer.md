@@ -14,7 +14,7 @@
 
 ### 3. MySQL에서 조인(join)의 역할은 무엇인가요? 다양한 join의 방식에 대해 설명해주세요.
 - 조인이란 여러 테이블들의 레코드를 관련있는 컬럼을 기준으로 검색 및 원하는 결과를 도출하기 위해서 사용되는 연산입니다.
-- Inner Join, Left Join, Right Join을 가장 많이 사용하며, 모든 경우의 수를 만드는 Cross Join과 자기자신과의 Cross Join이 있습니다.
+- Inner Join, Left Join, Right Join을 가장 많이 사용하며, 모든 경우의 수를 만드는 Cross Join과 자기자신과의 Cross Join인 Self Join이 있습니다.
 
 ### 4. MySQL에서 인덱스(index)란 무엇인가요?
 - 인덱스란 이름 그대로 데이터를 조회, 검색의 성능을 높이기 위해서 데이터를 정렬하는 자료구조입니다.
