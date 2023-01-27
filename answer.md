@@ -65,3 +65,6 @@
 - B+Tree 는 B-Tree의 확장된 개념으로 , B-Tree와 다르게 모든 노드에 key만 담겨있고 data 가 담겨 있지않고 leaf노드에만 key,data가 있습니다
 - 그리고 이 left 노드는 서로 링크드리스트로 연결 되어있습니다.
 - 이로 인해 얻을 수 있는 이점은 풀 스캔시에 leaf노드에서 선형탐색을 하기 때문에 큰 이점을 가집니다.
+
+![image](https://user-images.githubusercontent.com/68859996/215037349-862d566b-e632-4041-9e36-47e98246c022.png)
+
