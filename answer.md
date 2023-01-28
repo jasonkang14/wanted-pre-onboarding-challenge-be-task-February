@@ -56,11 +56,11 @@
 ### 3. MySQL에서 조인(join)의 역할은 무엇인가요? 다양한 join의 방식에 대해 설명해주세요.
 - Join은 한 데이터베이스 내의 여러 테이블의 레코드를 조합하여 하나의 열로 표현한 것이다. 조인은 테이블로 저장되거나 그 자체로 이용할 수 있는 결과 셋을 만들어 낸다. join은 2개의 테이블에서 각각의 공통값을 이용함으로써 필드를 조합하는 수단이 된다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f0ddf29c-1905-4c73-a926-c7e5f8f144e6/Untitled.png)
+![Untitled](https://user-images.githubusercontent.com/95615105/215273873-53531123-a769-4688-8a75-7639ebe8a5cd.png)
 
 1. INNER JOIN(내부 조인)
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/dc94cfff-043f-4fb9-bb76-91104ce51e0b/Untitled.png)
+![2](https://user-images.githubusercontent.com/95615105/215273860-1d5e0a5c-b1af-434d-a085-a15c87bbf5b2.png)
 
 이너조인은 조인될 조건이 부합하는 행만을 가지고 온다. 교집합이 되는 각 테이블의 칼럼명을 ON이나 WHERE로 명시해준다
 
@@ -76,17 +76,19 @@ INNER JOIN 직책  # 사원테이블과 직책 테이블을 inner join한다.
 WHERE사원.직책번호 = 직책.직책번호; #사원테이블과 직책 테이블은 직책번호로 연결된다.
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/adc6f451-98b2-4478-a5d6-07e76174d55c/Untitled.png)
+![3](https://user-images.githubusercontent.com/95615105/215273862-2c5d5730-a592-47fa-9a94-487b241fd020.png)
 
 이너조인은 두 테이블간의 교집합, 즉 겹치는 칼럼이 존재하는 경우에만 사용이 가능하다. 그렇지 않은 경우에는 아우터 조인을 사용한다.
 
 1. OUTER JOIN(외부 조인)
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8db74626-4b66-49f8-bfbc-941f134b127e/Untitled.png)
+![4](https://user-images.githubusercontent.com/95615105/215273863-47f54893-d79c-4f95-a412-0ebc45c5b794.png)
+
 
 내부 조인은 두 테이블에 모두 데이터가 있어야만 결과가 나오지만, 외부 조인은 한쪽에만 데이터가 있어도 결과가 나온다. 아우터 조인은 두 테이블간의 교집합이 되는 데이터 뿐만 아니라 해당되지 않는 값 까지 가져온다. 처음으로 가져오는 기준이 되는 테이블(드라이빙 테이블)이 필요하다. OUTER JOIN은 LEFT OUTER JOIN, RIGHT OUTER JOIN, FULL OUTER JOIN 3가지가 존재하는데 LEFT와 RIGHT는 중간에 OUTER을 빼고 부르기도 한다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5c43bcdf-26bb-430a-910a-165ef4cf8761/Untitled.png)
+![5](https://user-images.githubusercontent.com/95615105/215273865-4942baee-8f1c-4670-ae9f-f296f0c4db09.png)
+
 
 - LEFT(OUTER) JOIN : 왼쪽 테이블의 모든 값 출력
     
@@ -99,9 +101,10 @@ WHERE사원.직책번호 = 직책.직책번호; #사원테이블과 직책 테�
     ON A.학번 = B.학번
     ```
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a4b3f0ab-7808-4980-94e7-35bf36df0bc0/Untitled.png)
+![6](https://user-images.githubusercontent.com/95615105/215273866-8b5d0718-5828-458f-8135-23487387b876.png)
+
     
-    이너 조인처럼 연결하면 초록색 부분이 추가되는데 10,21,99학번은 B테이블에 존재하지 않기 때문에 null로 체워진다
+   이너 조인처럼 연결하면 초록색 부분이 추가되는데 10,21,99학번은 B테이블에 존재하지 않기 때문에 null로 체워진다
     
 - RIGHT (OUTER) JOIN : 오른쪽 테이블의 모든 값 출력
 
@@ -114,7 +117,8 @@ RIGHT OUTER JOIN B
 ON A.학번 = B.학번
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/03805f2f-0524-4dd7-b214-e946f95e42ce/Untitled.png)
+![7](https://user-images.githubusercontent.com/95615105/215273867-57f623d0-2480-40d4-8693-2923f967501e.png)
+
 
 B테이블이 기준이므로 모두 가져온 후 학번으로 연결한다. A테이블에는 11,13,14학번이 없기 때문에 나이 성별 이름이 모두 null이 된다.
 
@@ -129,7 +133,8 @@ FULL OUTER JOIN B
 ON A.학번 = B.학번
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/52dbe857-cc46-42e6-a260-3f64df72dfff/Untitled.png)
+![8](https://user-images.githubusercontent.com/95615105/215273871-56ecefa4-3c89-4765-a642-3fac039435ea.png)
+
 
 A 테이블과 B 테이블 모두 들어오고 그것에 따른 빈칸들까지 모두 null로 되어 표현된다.
 
@@ -142,7 +147,8 @@ SELECT * FROM <첫번째 테이블>
 CROSS JOIN <두번째 테이블>
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1d5a9322-5139-49ff-bf1a-69d447b47767/Untitled.png)
+![9](https://user-images.githubusercontent.com/95615105/215273872-79f952ea-7b62-4bbb-9962-354a0edb4d8e.png)
+
 
 - SELF JOIN(자체 조인)
 
