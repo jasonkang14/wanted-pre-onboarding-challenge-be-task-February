@@ -80,7 +80,7 @@ WHERE사원.직책번호 = 직책.직책번호; #사원테이블과 직책 테�
 
 이너조인은 두 테이블간의 교집합, 즉 겹치는 칼럼이 존재하는 경우에만 사용이 가능하다. 그렇지 않은 경우에는 아우터 조인을 사용한다.
 
-1. OUTER JOIN(외부 조인)
+2. OUTER JOIN(외부 조인)
 
 ![4](https://user-images.githubusercontent.com/95615105/215273863-47f54893-d79c-4f95-a412-0ebc45c5b794.png)
 
@@ -138,7 +138,7 @@ ON A.학번 = B.학번
 
 A 테이블과 B 테이블 모두 들어오고 그것에 따른 빈칸들까지 모두 null로 되어 표현된다.
 
-- CROSS JOIN(상호 조인)
+3. CROSS JOIN(상호 조인)
 
 한쪽 테이블의 모든 행과 다른 쪽 테이블의 모든 행을 조인시키는 기능이다. 상호 조인 결과의 전체 행 개수는 두 테이블의 각 행 개수를 곱한 수만큼 된다. 카티션 곱이라고도 한다.
 
@@ -150,7 +150,7 @@ CROSS JOIN <두번째 테이블>
 ![9](https://user-images.githubusercontent.com/95615105/215273872-79f952ea-7b62-4bbb-9962-354a0edb4d8e.png)
 
 
-- SELF JOIN(자체 조인)
+4. SELF JOIN(자체 조인)
 
 자체 조인은 자기 자신과 조인하므로 1개의 테이블을 사용한다. 별도의 문법이 있는 것은 아니고 1개로 조인하면 자체 조인이 된다.
 
@@ -181,8 +181,11 @@ SELECT <열 목록> FROM <테이블> 별칭 A
     | 저장값 | 데이터를 저장한 블록의 포인터 | 값과 데이터의 위치를 가리키는 포인터 |
     | 정렬 | 인덱스 순서와 물리적 순서가 일치 | 인덱스 순서와 물리적 순서가 불일치 |
     
-    출처 : 
-    [[MYSQL] 📚 인덱스(index) 핵심 설계 & 사용 문법 💯 총정리](https://inpa.tistory.com/entry/MYSQL-%F0%9F%93%9A-%EC%9D%B8%EB%8D%B1%EC%8A%A4index-%ED%95%B5%EC%8B%AC-%EC%84%A4%EA%B3%84-%EC%82%AC%EC%9A%A9-%EB%AC%B8%EB%B2%95-%F0%9F%92%AF-%EC%B4%9D%EC%A0%95%EB%A6%AC)
+    
+ 
+출처 :
+
+[[MYSQL] 📚 인덱스(index) 핵심 설계 & 사용 문법 💯 총정리](https://inpa.tistory.com/entry/MYSQL-%F0%9F%93%9A-%EC%9D%B8%EB%8D%B1%EC%8A%A4index-%ED%95%B5%EC%8B%AC-%EC%84%A4%EA%B3%84-%EC%82%AC%EC%9A%A9-%EB%AC%B8%EB%B2%95-%F0%9F%92%AF-%EC%B4%9D%EC%A0%95%EB%A6%AC)
 
 [SQL 기본 문법: JOIN(INNER, OUTER, CROSS, SELF JOIN)](https://hongong.hanbit.co.kr/sql-%EA%B8%B0%EB%B3%B8-%EB%AC%B8%EB%B2%95-joininner-outer-cross-self-join/)
 
