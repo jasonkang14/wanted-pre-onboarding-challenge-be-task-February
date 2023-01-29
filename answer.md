@@ -47,6 +47,34 @@
 - 트랜잭션이란...............
 
 3. MySQL에서 조인(join)의 역할은 무엇인가요? 다양한 join의 방식에 대해 설명해주세요.
+    > 조인이란, 두 개 이상의 테이블을 묶어서 하나의 결과 집합으로 만들어 내는 것이다.
+    >
+    > 즉, 서로 다른 테이블에서 데이터를 가져올 때 사용하는 것이 Join이다.
+
+
+* 다양한 join 방식
+    1. INNER JOIN (내부 조인)
+        > INNER JOIN은 ON 절과 함께 사용되며, ON 절의 조건을 만족하는 데이터만을 가져온다.
+    * INNER JOIN의 결과 (벤 다이어그램)
+
+        ![](https://www.techonthenet.com/sql/images/inner_join.gif)
+
+    2. LEFT JOIN
+        > LEFT JOIN은 첫 번째 테이블을 기준으로, 두 번째 테이블을 조합하는 JOIN이다.
+        >
+        > 이때 ON 절의 조건을 만족하지 않는 경우에는 첫 번째 테이블의 필드 값은 그대로 가져온다. 하지만 해당 레코드의 두 번째 테이블의 필드 값은 모두 NULL로 표시된다.
+    * LEFT JOIN의 결과 (벤 다이어그램)
+
+        ![](https://www.techonthenet.com/sql/images/left_outer_join.gif)
+
+    3. RIGHT JOIN
+        > RIGHT JOIN은 LEFT 조인과는 반대로 두 번째 테이블을 기준으로, 첫 번째 테이블을 조합하는 JOIN이다.
+        >
+        > 이때 ON 절의 조건을 만족하지 않는 경우에는 두 번째 테이블의 필드 값은 그대로 가져온다. 하지만 해당 레코드의 첫 번째 테이블의 필드 값은 모두 NULL로 표시된다.
+    * RIGHT JOIN의 결과 (벤 다이어그램)
+
+        ![](https://www.techonthenet.com/sql/images/right_outer_join.gif)
+
 
 - 조인이란...........
 
