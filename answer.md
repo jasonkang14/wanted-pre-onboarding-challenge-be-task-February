@@ -13,7 +13,8 @@ RDBMS는 데이터에 대한 접근(분류, 정렬, 탐색, 업데이트 등의 
 
 3. MySQL에서 조인(join)의 역할은 무엇인가요? 다양한 join의 방식에 대해 설명해주세요.
 
-- 조인이란...........
+- 조인이란 두 개 이상의 테이블에서 가져온 레코드를 조합, 하나의 테이블이나 결과 집합으로 만들어내는 쿼리입니다.  
+MySQL에서 조인의 종류는 INNER JOIN, LEFT OUTER JOIN, RIGHT OUTER JOIN, CROSS JOIN, SELF JOIN이 있습니다. 'INNER JOIN'은 MySQL에서 JOIN으로 쓰이며 JOIN - [AS - ] ON - [WHERE - ] 과 같이 사용됩니다. 두 개 이상의 테이블 모두에서 포함하는 레코드를 합쳐서 표현해주는, 집합으로 치자면 교집합과 같은 JOIN입니다. 'LEFT OUTER JOIN', 'RIGHT OUTER JOIN'은 MySQL에서 LEFT, RIGHT로 쓰이며 [LEFT | RIGHT]( OUTER JOIN) - [AS - ] ON - [WHERE - ]과 같이 사용됩니다. 식으로 나타내면 A LEFT JOIN B, A RIGHT JOIN B와 같이 나타낼 수 있으며 이때 집합으로 이해하자면 LEFT JOIN은 (A와 B의 교집합)과 A의 합집합, RIGHT JOIN은 (A와 B의 교집합)과 B의 합집합으로 볼 수 있습니다. 'CROSS JOIN'은 카티전 조인이라고도 하며 집합에서는 집합 곱의 개념입니다. MySQL에서는 CROSS JOIN - [ AS - ]과 같이 사용됩니다. 이는 너무 많은 레코드를 생성할 위험이 있으므로 많이 사용되지는 않는다고 합니다. 마지막으로 'SELF JOIN'은 같은 테이블에서 두 번 참조를 해야하는 경우에 사용됩니다. MySQL에서의 사용법은 한 태이블 안에서 INNER JOIN을 하는 것입니다. 한 테이블에 내에서 FROM - INNER JOIN - ON - WHERE - 과 같이 사용할 수 있습니다. 예를 들어 요리사 A의 분야가 중식일 때, 중식을 요리하는 다른 요리사의 컬럼 값을 참조하고자 사용합니다. 이 때 요리사 A의 요리분야 컬럼(중식)을 이용, 요리분야 컬럼을 참조하여 분야가 중식인 다른 요리사를 SELECT 해주면 됩니다.
 
 4. MySQL에서 인덱스(index)란 무엇인가요?
 
