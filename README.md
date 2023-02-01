@@ -1,5 +1,8 @@
 # 원티드 프리온보딩 백엔드 챌린지 2월 사전과제
 
+## 공지 링크
+https://www.wanted.co.kr/events/pre_challenge_be_4
+
 ### 사전과제 진행 가이드
 
 - 해당 repository를 fork한 후 각 문제에 대한 답이나 본인의 생각을 작성해주세요
