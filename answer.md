@@ -31,7 +31,64 @@
 
 3. MySQL에서 조인(join)의 역할은 무엇인가요? 다양한 join의 방식에 대해 설명해주세요.
 
-- 조인이란...........
+- JOIN이란 스키마에서 설정해놓았던 외래키를 사용해 2개 이상의 테이블을 연결해 출력하는 것을 말한다.
+- JOIN의 종류
+
+  - INNER JOIN: JOIN 조건에서 동일한 값이 있는 행만 반환한다.(교집합)
+
+  ```sql
+  SELECT 테이블명1.컬럼명1, 테이블명2.컬럼명1
+  FROM 테이블명1 INNER JOIN 테이블명2
+  ON 테이블명1.컬럼명1, 테이블명2.컬럼명1;
+  ```
+
+  - OUTER JOIN: JOIN 조건에서 동일한 값이 없는 행도 반환할 때 사용한다. LEFT OUTER JOIN, RIGHT OUTER JOIN, FULL OUTER JOIN 등이 있다.
+
+  - LEFT OUTER JOIN: 조인 수행 시 먼저 표기된 좌측 테이블에 해당하는 데이터를 먼저 읽은 후, 우측 테이블에서 JOIN 대상 데이터를 읽어온다.
+
+  ```sql
+  SELECT 컬럼명1, 컬럼명2
+  FROM 테이블명1 LEFT OUTER JOIN 테이블명2
+  ON 테이블명1.컬럼명1 = 테이블명2.컬럼명1;
+  ```
+
+  - RIGHT OUTER JOIN: 조인 수행 시 먼저 표기된 우측 테이블에서 해당하는 데이터를 먼저 읽은 후, 좌측 테이블에서 JOIN 대상 데이터를 읽어온다.
+
+  ```sql
+  SELECT 컬럼명1, 컬럼명2
+  FROM 테이블명1 RIGHT OUTER JOIN 테이블명2
+  ON 테이블명1.컬럼명1 = 테이블명2.컬럼명1;
+  ```
+
+  - FULL OUTER JOIN: 합집합을 말한다. 테이블 1과 테이블 2의 모든 데이터가 검색된다.
+
+  ```sql
+  SELECT 컬럼명1, 컬럼명2
+  FROM 테이블명1 FULL OUTER JOIN 테이블명2
+  ON 테이블명1.컬럼명1 = 테이블명2.컬럼명1;
+  ```
+
+  - NATURAL JOIN: 테이블 간 중복된 열이 있다면, 한개만 표시하는 JOIN 을 뜻한다.
+
+  ```sql
+  SELECT 컬럼명1, 컬럼명2
+  FROM 테이블명1 NATURAL JOIN 테이블명2;
+  ```
+
+  - CROSS JOIN: 일반 집합 연산자의 PRODUCT 개념으로 테이블간 조인조건이 없는 경우 생길 수 있는 모든 데이터의 조합을 말한다. 두 개의 테이블에 대한 CROSS JOIN 결과는, 양쪽 집합의 M \* N 건의 데이터 조합이 발생한다.
+
+  ```sql
+  SELECT 컬럼명1, 컬럼명2
+  FROM 테이블명1 CROSS JOIN 테이블명2;
+  ```
+
+  - SELF JOIN: 자기자신을 조인하는 것이다. 하나의 테이블을 여러번 복사해서 조인한다고 보면 된다.
+
+  ```sql
+  SELECT 컬럼명1, 컬럼명2
+  FROM 테이블명1, 테이블명2
+  (WHRER condition);
+  ```
 
 4. MySQL에서 인덱스(index)란 무엇인가요?
 
