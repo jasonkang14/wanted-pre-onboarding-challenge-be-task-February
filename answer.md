@@ -73,14 +73,128 @@ RDB와 NoSQL 둘 다 단점이 장점이 되기도 하고, 장점이 단점이 �
 
 ## 3. MySQL에서 조인(join)의 역할은 무엇인가요? 다양한 join의 방식에 대해 설명해주세요.
 
-- 조인이란...........
+### JOIN이란
+* 둘 이상의 테이블 사이에서 연관된 column을 기반으로 row를 결합하는 기능입니다.
 
-4. MySQL에서 인덱스(index)란 무엇인가요?
+### JOIN의 종류
 
-- 인덱스란............
+### 1. INNER JOIN
+
+- **두 테이블의 교집합**. JOIN 조건을 만족하는 행을 반환한다.
+- 그냥 JOIN만 적어줄 시 기본적으로 INNER JOIN이 실행된다.
+
+```sql
+SELECT *
+FROM table1
+INNER JOIN table2
+ON table1.id = table2.id;
+```
+
+```sql
+SELECT * 
+FROM table1, table2
+WHERE table1.id = table2.id
+```
+
+### 2. OUTER JOIN
+
+- **조인 조건에서 동일한 값이 없는 행도 반환**할 때 사용한다.
+    
+    ### 2-1 LEFT OUTER JOIN
+    
+    - 조인문의 왼쪽에 있는 테이블의 모든 결과를 가져온 후 오른쪽 테이블의 데이터를 매칭하고, 매칭되는 데이터가 없는 경우 NULL을 표시한다.
+    - 쉽게 말해서 양쪽 테이블에서 공통되는 데이터(A ∩ B)에 + FROM절 테이블에만 존재하는 데이터(A - B)를 추가한다.
+    - `LEFT JOIN` 이라고만 해도 `LEFT OUTER JOIN` 이 실행된다.
+    
+    ```sql
+    SELECT *
+    FROM table1 t1
+    LEFT OUTER JOIN table2 t2
+    ON t1.id = t2.id;
+    ```
+    
+    ### 2-2 RIGHT OUTER JOIN
+    
+    - left outer join의 반대
+    
+    ```sql
+    SELECT *
+    FROM table1 t1
+    RIGHT OUTER JOIN table2 t2
+    ON t1.id = t2.id;
+    ```
+    
+    ### 2-3 FULL OUTER JOIN
+    
+    - LEFT OUTER JOIN과 RIGHT OUTER JOIN을 합친 것.
+    - 양쪽 모두 조건이 일치하지 않는 것까지 모두 결합하여 출력한다.
+    - 매칭되는 데이터가 없는 경우 NULL을 표시한다.
+    
+    ```sql
+    SELECT *
+    FROM table1 t1
+    FULL OUTER JOIN table2 t2
+    ON t1.id = t2.id;
+    ```
+    
+
+### 3. CROSS JOIN
+
+- **카테시안 곱**. 곱집합을 반환한다.
+
+```sql
+SELECT * 
+FROM TABLE1
+CROSS JOIN TABLE2;
+```
+
+### 4. NATURAL JOIN
+
+- 두 테이블에서 컬럼명이 동일하고, 컬럼의 자료형, 값이 같은 행을 반환한다.
+
+```sql
+SELECT * 
+FROM table1
+NATURAL JOIN table2;
+```
+
+### JOIN에서 USING과 ON의 차이
+
+- USING절은 ON절과 마찬가지로 JOIN 조건을 설정할 때 사용한다.
+
+```sql
+SELECT *
+FROM table1
+JOIN table2
+USING (name, gender); -- 괄호 필수
+
+SELECT *
+FROM table1 t1
+JOIN table2 t2
+ON t1.name = t2.name
+AND t1.gender = t2.gender;
+```
+
+- `USING`을 사용한 쿼리와 `ON`을 사용한 두 쿼리는 같은 결과를 반환한다.
+    - 하지만 `USING` 은 **두 테이블의 컬럼명이 같을 때** 이용할 수 있고,
+    - `ON` 은 **두 테이블의 컬럼명이 다르더라도** `=` 비교를 통해 조인이 가능하다.
 
 
 
+## 4. MySQL에서 인덱스(index)란 무엇인가요?
+
+### 인덱스란
+- 책의 목차와 같은 역할. 특정 데이터에 바로 접근할 수 있도록 데이터의 위치 정보를 제공해주는 기능이다.
+- 모든 데이터베이스는 pk, fk에 자동으로 B+ Tree 인덱스를 생성한다.
+- 인덱스가 있을 경우 O(log n)으로 탐색 가능
+- index가 없는 컬럼은 O(n) 소요.
+    - 인덱스가 걸리지 않은 컬럼으로 조회하면 전체 레코드를 풀스캔 하기 때문에 속도가 느리다.
+
+### 인덱스 사용이유
+- 검색성능 향상 목적 → 자주 사용하는 컬럼에 인덱스를 만들어 성능을 개선을 기대할 수 있다.
+ - 해당 쿼리의 인덱스 사용 여부, 카디널리티, selectivity와 같은 요소들이 고려된 인덱스가 생성되어야 실제 성능 개선을 기대할 수 있다.
+
+<br>
 <hr>
 
 ### 참고
@@ -101,3 +215,18 @@ RDBMS과 NoSQL 비교
 * https://tecoble.techcourse.co.kr/post/2021-07-11-database-transaction/
 * https://kosaf04pyh.tistory.com/202](https://kosaf04pyh.tistory.com/202
 * https://joont92.github.io/db/트랜잭션-격리-수준-isolation-level/
+
+
+JOIN
+* https://www.w3schools.com/sql/sql_join.asp
+* https://velog.io/@yanghl98/Database-JOIN
+* https://doh-an.tistory.com/30
+* https://seoyuun22.tistory.com/entry/SQL%EC%97%AC%EB%9F%AC-%ED%85%8C%EC%9D%B4%EB%B8%94%EC%9D%98-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A5%BC-%EC%A1%B0%EC%9D%B8%ED%95%B4%EC%84%9C-%EC%B6%9C%EB%A0%A5%ED%95%98%EA%B8%B0ON%EC%A0%88-USING%EC%A0%88-NATURAL-JOIN-LEFFTRIGHT-OUTER-JOIN
+* https://linux.systemv.pe.kr/mysql-using-vs-%EC%B0%A8%EC%9D%B4/
+* https://www.youtube.com/watch?v=dbkOk3JhxAE
+
+인덱스
+* https://itholic.github.io/database-cardinality/
+* https://velog.io/@d3fau1t/%EC%9D%B8%EB%8D%B1%EC%8A%A4%EC%99%80-%EC%B9%B4%EB%94%94%EB%84%90%EB%A6%AC%ED%8B%B0
+* https://www.youtube.com/watch?v=NkZ6r6z2pBg&t=702s
+* https://jdm.kr/blog/169
