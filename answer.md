@@ -103,7 +103,7 @@ RDBMS에서 관계 있는 컬럼(외래키)을 이용하여 여러 테이블의 
 
 조인의 종류는 아래 이미지를 참고하자.
 
-![img](https://www.google.com/url?sa=i&url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ASQL_Joins.svg&psig=AOvVaw0F0pXmyJUOYcE0fZdnK_Tc&ust=1675412859003000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCMjHpLS19vwCFQAAAAAdAAAAABAE)
+![img](https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/SQL_Joins.svg/1600px-SQL_Joins.svg.png?20141123194942)
 
 
 <br>
