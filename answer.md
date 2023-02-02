@@ -13,3 +13,5 @@
 4. MySQL에서 인덱스(index)란 무엇인가요?
 
 - 인덱스란............
+
+https://ribbon-sound-6fd.notion.site/23c9099a4b9d401abbd2742fb08627b4
