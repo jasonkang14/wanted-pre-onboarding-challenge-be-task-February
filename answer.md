@@ -57,10 +57,85 @@
     - 두 개 이상의 테이블을 연결하여 데이터를 검색하는 방법
   - 종류
     1. 내부 조인
+        - 조인 키 컬럼 값이 양쪽 테이블 데이터 집합에서 공통적으로 존재하는 데이터만 조인한 결과를 데이터 집합으로 추출한다.
+        - 교집합 연산과 같다.
+        - (A ∩ B)
+        ```sql
+       SELECT *
+       FROM EMPLOYEE, DEPARTMENT
+       WHERE EMPLOYEE.DepartmentID = DEPARTMENT.DepartmentID;
+       ```
     2. 외부 조인
+       1. Left outer join
+           - 조인문의 왼쪽에 있는 테이블의 모든 결과를 가져온 후 오른쪽 테이블의 데이터를 매칭하고, 매칭되는 데이터가 없는 경우 NULL을 표시한다.
+           - 교집합 연산 결과와 차집합 연산 결과를 합친 것과 같다.
+          - ((A ∩ B) ∪ (A - B))
+        ```sql
+       SELECT *
+       FROM EMPLOYEE E LEFT OUTER JOIN DEPARTMENT D
+       ON E.DEPARTMENTID = D.DEPARTMENTID;
+       ```
+       2. Right outer join
+           - 조인문의 오른쪽에 있는 테이블의 모든 결과를 가져온 후 왼쪽 테이블의 데이터를 매칭하고, 매칭되는 데이터가 없는 경우 NULL을 표시한다.
+           - 교집합 연산 결과와 차집합 연산 결과를 합친 것과 같다.
+          - ((A ∩ B) ∪ (B - A))
+        ```sql
+       SELECT *
+       FROM EMPLOYEE E RIGHT OUTER JOIN DEPARTMENT D
+       ON E.DepartmentID = D.DepartmentID;
+       ```
+       3. Full Outer Join
+          - Left outer join과 Right outer join을 합친 것으로, 양쪽 모두 조건이 일치하지 않는 것들까지 모두 결합하여 출력하고, 매칭되는 데이터가 없는 경우 NULL을 표시한다.
+          - 합집합 연산 결과와 같다.
+          - (A ∪ B)
+          ```sql
+            SELECT *
+            FROM EMPLOYEE E FULL OUTER JOIN DEPARTMENT D
+            ON E.DepartmentID = D.DepartmentID;
+            ```
     3. 교차 조인
+       - 카디션 곱이라고도 하며, 조인되는 두 테이블에서 곱집합을 반환한다. 
+        ```sql
+       SELECT *
+       FROM EMPLOYEE CROSS JOIN DEPARTMENT;
+       ```
     4. 셀프 조인
+       - 자기자신과 자기자신을 조인하는 것으로, 하나의 테이블을 여러번 복사해서 조인한다고 생각하자.
+       - 같은 테이블을 사용하기 때문에 테이블에 반드시 별명을 붙여야 한다.
+       - 명령어는 따로 없고, outer join이나 inner join이나 자기 자신의 테이블과 조인할 경우를 셀프 조인이라고 한다.
+       ```sql
+       SELECT A.NAME, B.AGE
+       FROM EMPLOYEE A, EMPLOYEE B
+       ```   
 
 4. MySQL에서 인덱스(index)란 무엇인가요?
+- 인덱스
+  - 정의
+    - 데이터의 저장(insert, update, delete)의 성능을 희생하고, 대신에 데이터의 읽기 동작 속도를 높이는 자료구조이다.
+  - 특징
+    - select 검색 속도를 크게 향상시킨다.
+    - 인덱스 생성 시 DB 크기의 약 10% 정도의 추가 공간이 필요하다.
+    - 인덱스 생성시 시간이 소요된다.
+    - insert, update, delete 의 데이터 변경 쿼리가 잦은 경우 paging이 빈번햇서 성능이 저하될 수 있다.
+  - index 알고리즘 종류
+    1. B-Tree 인덱스
+       - 컬럼의 값을 변경하지 않고, 원래의 값을 이용해 인덱싱하는 알고리즘이다.
+       - 장점
+         - 어떤 데이터를 조회하든지, 조회 과정의 길이 및 비용이 균등하다.
+       - 단점
+         - 어떤 데이터를 조회하든지 Root에서부터 Leaf 페이지를 모두 거쳐야 하기 때문에 데이터가 적은 테이블 등의 단순 조회로 데이터를 조회하는 과정 대비 조회 속도가 느리다.
+    2. Hash 인덱스
+       - 정의
+         -컬럼의 값으로 해시 값을 계산해서 인덱싱하는 알고리즘으로, 매우 빠른 검색을 지원한다.
+       - 장점
+         - 실제 키 값과는 관계 없이 인덱스 크기가 작고 검색이 빠르다.
+         - 원래 키 값을 저장하는 것이 아니라 해시 함수의 결과만을 저장하므로 키 컬럼의 값이 아무리 길어도 실제 해시 인덱스에 저장되는 값은 4~8바이트 수준이다.
+         - 타 인덱스 대비 조회 속도가 매우 빠르다.
+       - 단점
+         - 각 해시 값에 주소 값을 배정하는 인덱스의 특징에 따라 범위로 조회하는 작업은 느리다.
+         - 범위로 묶어서 보관하는 인덱스가 아니므로 데이터 개수가 증가함에 따라 범위로 묶어서 보관하는 인덱스보다 더 큰 저장 공간을 필요로 한다.
 
-- 인덱스란............
+> 출처
+- [RDBMS, NOSQL 차이점](https://khj93.tistory.com/entry/Database-RDBMS%EC%99%80-NOSQL-%EC%B0%A8%EC%9D%B4%EC%A0%90)
+- [SQL 조인 종류](https://github.com/gyoogle/tech-interview-for-developer/blob/master/Computer%20Science/Database/%5BDatabase%20SQL%5D%20JOIN.md)
+- [Mysql 인덱스](https://inpa.tistory.com/entry/MYSQL-%F0%9F%93%9A-%EC%9D%B8%EB%8D%B1%EC%8A%A4index-%ED%95%B5%EC%8B%AC-%EC%84%A4%EA%B3%84-%EC%82%AC%EC%9A%A9-%EB%AC%B8%EB%B2%95-%F0%9F%92%AF-%EC%B4%9D%EC%A0%95%EB%A6%AC)
