@@ -33,4 +33,4 @@
   - 다중컬럼 인덱스를 고려해본다.   
   - 정수형 자료형이 index로 설정할 때 가장 효율적이다.
   - 고유한 값이 많은 컬럼
-- 참고블: https://spiderwebcoding.tistory.com/6
+- 참고블로그: https://spiderwebcoding.tistory.com/6
