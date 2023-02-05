@@ -17,8 +17,12 @@ NoSQL, 비관계형 데이터베이스는 RDBMS를 제외한 다른 형태의 DB
 
 3. MySQL에서 조인(join)의 역할은 무엇인가요? 다양한 join의 방식에 대해 설명해주세요.
 
-- 조인이란...........
+조인은 두 개의 테이블(relation)에서 조건에 맞는 데이터를 함께 조합해서 조회하기 위해서 사용하는 기술입니다. 각 테이블에서 특정 칼럼을 이용해 조건을 만들며, 이 조건을 join condition이라고 부릅니다.
+
+조인에는 inner join, outer join(right outer join, left outer join)등이 있는데, inner join은 join condition을 만족하는 두 테이블의 공통 tuple만을 조회하기 위해 사용하고, outer join은 join condition에 일치하지 않는 tuples도 조회합니다.
+
+Outer join 중 right outer join은 join의 대상이 되는 테이블의 row(tuple)들을 모두 포함하는 join 결과를 조회하고, left outer join은 본 테이블의 모든 tuple의 데이터를 포함하는 조회 결과를 조회하기 위해 사용합니다.
 
 4. MySQL에서 인덱스(index)란 무엇인가요?
 
-- 인덱스란............
+인덱스는 MySQL에서 테이블에 저장된 데이터의 조회를 빠르게 하기위한 자료 구조입니다. 인덱스라는 자료구조를 사용하는 만큼 조회의 성능은 증가하지만, 그 대신 인덱스 자료구조를 추가적으로 관리하기 때문에, 추가, 삭제, 갱신 등의 작업에는 더 큰 비용(cost)이 요구됩니다.
